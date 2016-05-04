@@ -1,0 +1,27 @@
+{
+  "name": "rhubarbphp/module-leaf-table",
+  "description": "A leaf for providing interactable tabs.",
+  "keywords": [
+    "mvp",
+    "presenter",
+    "leaf",
+    "rhubarb",
+    "php",
+    "framework"
+  ],
+  "homepage": "http://www.rhubarbphp.com/",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Rhubarb\\Leaf\\Tabs\\": "src/"
+    }
+  },
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.0-dev"
+		}
+	},  
+  "require": {
+    "rhubarbphp/module-leaf": "^1.0.0"
+  }
+}
