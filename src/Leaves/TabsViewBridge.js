@@ -11,13 +11,16 @@ tabsPresenter.prototype.attachEvents = function () {
 
     for(var i = 0; i<nodes.length; i++){
         nodes[i].addEventListener('click',function () {
-            var lis = $(this).parent()[0].childNodes;
+            var lis = this.parentNode.childNodes;
             var index = Array.prototype.indexOf.call(lis, this);
 
-            self.raiseServerEvent("TabSelected", index);
+            self.raiseServerEvent("tabSelected", index);
 
-            $('ul:first', self.element).children().removeClass('selected');
-            $(this).addClass('selected');
+            for(var j = 0; j<nodes.length; j++){
+                nodes[j].classList.remove('selected');
+            }
+
+            this.classList.add('selected');
         });
     }
 };

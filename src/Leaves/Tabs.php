@@ -36,11 +36,22 @@ class Tabs extends Leaf
      */
     public $selectedTabChangedEvent;
 
+    /**
+     * Raised if the selected tab has changed to indicate that other elements on the page might be
+     * updated by this change.
+     *
+     * Used by other leaves such as the Table leaf
+     *
+     * @var Event
+     */
+    public $refreshesPageCollectionEvent;
+
     public function __construct($name)
     {
         parent::__construct($name);
 
         $this->selectedTabChangedEvent = new Event();
+        $this->refreshesPageCollectionEvent = $this->selectedTabChangedEvent;
     }
 
     public function setTabDefinitions($tabs = [])

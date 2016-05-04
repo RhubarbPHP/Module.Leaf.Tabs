@@ -145,7 +145,7 @@ class SearchPanelTabs extends Tabs
         if (property_exists($presenter, "searchedEvent" )){
             $presenter->searchedEvent->attachHandler(
                 function () {
-                    $this->rePresent();
+                    $this->reRender();
                 }
             );
         }
