@@ -1,4 +1,4 @@
-var tabsPresenter = function (presenterPath) {
+var tabsPresenter = function (leafPath) {
     window.rhubarb.viewBridgeClasses.ViewBridge.apply(this, arguments);
 };
 
