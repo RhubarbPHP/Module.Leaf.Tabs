@@ -28,10 +28,18 @@ class TabsModel extends LeafModel
      */
     public $tabSelectedEvent;
 
+    /**
+     * Raised to get a Collection object for potentially obtaining a count for each tab.
+     *
+     * @var Event
+     */
+    public $getCollectionEvent;
+
     public function __construct()
     {
         parent::__construct();
 
+        $this->getCollectionEvent = new Event();
         $this->tabSelectedEvent = new Event();
     }
 }

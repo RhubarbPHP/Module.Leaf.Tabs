@@ -32,6 +32,15 @@ class Tabs extends Leaf
     protected $model;
 
     /**
+     * When true normal filtering of the collection based on the selected tab is disabled.
+     *
+     * Essential for getting potential counts of tabs for example.
+     *
+     * @var bool
+     */
+    protected $gettingUnfilteredCollection = false;
+
+    /**
      * @var Event
      */
     public $selectedTabChangedEvent;
@@ -46,12 +55,35 @@ class Tabs extends Leaf
      */
     public $refreshesPageCollectionEvent;
 
+    /**
+     * Raised to get a Collection object for potentially obtaining a count for each tab.
+     *
+     * Note that this is not leveraged by the standard TabView.
+     *
+     * @var Event
+     */
+    public $getCollectionEvent;
+
     public function __construct($name)
     {
         parent::__construct($name);
 
         $this->selectedTabChangedEvent = new Event();
+        $this->getCollectionEvent = new Event();
+
         $this->refreshesPageCollectionEvent = $this->selectedTabChangedEvent;
+    }
+
+    protected function onModelCreated()
+    {
+        parent::onModelCreated();
+
+        $this->model->getCollectionEvent->attachHandler(function(){
+            $this->gettingUnfilteredCollection = true;
+            $collection = $this->getCollectionEvent->raise();
+            $this->gettingUnfilteredCollection = false;
+            return $collection;
+        });
     }
 
     public function setTabDefinitions($tabs = [])
