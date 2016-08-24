@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.0.x
+
+
 ### 1.0.1
 
 Fixed:	    Tabs didn't play nice with other controls - selected tab wasn't retained in hidden state
