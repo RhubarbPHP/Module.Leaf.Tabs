@@ -14,6 +14,8 @@ tabsPresenter.prototype.attachEvents = function () {
             var lis = this.parentNode.childNodes;
             var index = Array.prototype.indexOf.call(lis, this);
 
+            self.model.selectedTab = index;
+            self.saveState();
             self.raiseServerEvent("tabSelected", index);
 
             for(var j = 0; j<nodes.length; j++){

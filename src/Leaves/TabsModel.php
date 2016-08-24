@@ -42,4 +42,13 @@ class TabsModel extends LeafModel
         $this->getCollectionEvent = new Event();
         $this->tabSelectedEvent = new Event();
     }
+
+    protected function getExposableModelProperties()
+    {
+        $list = parent::getExposableModelProperties();
+        $list[] = "selectedTab";
+
+        return $list;
+    }
+
 }
