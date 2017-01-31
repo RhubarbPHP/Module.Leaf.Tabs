@@ -92,6 +92,13 @@ class Tabs extends Leaf
         $this->model->tabs = $this->getInflatedTabDefinitions();
     }
 
+    protected function beforeRender()
+    {
+        $this->markSelectedTab($this->model->tabs);
+
+        parent::beforeRender();
+    }
+
     public function getSelectedTab()
     {
         if ($this->model->selectedTab !== null) {

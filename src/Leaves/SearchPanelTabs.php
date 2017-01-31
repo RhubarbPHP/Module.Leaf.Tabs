@@ -149,5 +149,17 @@ class SearchPanelTabs extends Tabs
                 }
             );
         }
+
+        if (method_exists($presenter, "setSearchControlValues" )){
+            $this->selectedTabChangedEvent->attachHandler(
+                function ($index) use ($presenter) {
+                    /**
+                     * @var $tab SearchPanelTabDefinition
+                     */
+                    $tab = $this->getTabByIndex($index);
+                    $presenter->setSearchControlValues($tab->data);
+                }
+            );
+        }
     }
 }
