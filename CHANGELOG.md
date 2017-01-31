@@ -1,7 +1,8 @@
 # Changelog
 
-### 1.0.x
+### 1.0.2
 
+Fixed:	    Tabs didn't work with SearchTabs 
 
 ### 1.0.1
 
