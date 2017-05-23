@@ -64,6 +64,13 @@ class Tabs extends Leaf
      */
     public $getCollectionEvent;
 
+    /**
+     * True to enable display of counts on tabs if a connected leaf can provide them.
+     *
+     * @var bool
+     */
+    public $includeCountIfSupported = true;
+
     public function __construct($name)
     {
         parent::__construct($name);
@@ -83,6 +90,29 @@ class Tabs extends Leaf
             $collection = $this->getCollectionEvent->raise();
             $this->gettingUnfilteredCollection = false;
             return $collection;
+        });
+
+        $this->model->getCountForTabEvent->attachHandler(function(TabDefinition $tab){
+
+            if (!$this->includeCountIfSupported){
+                return null;
+            }
+
+            $oldSelected = $this->model->selectedTab;
+            $wasSelected = $tab->selected;
+
+            $index = array_search($tab,$this->getInflatedTabDefinitions());
+            $this->selectedTabChangedEvent->raise($index);
+            $collection = $this->getCollectionEvent->raise();
+            $this->selectedTabChangedEvent->raise($oldSelected);
+
+            $tab->selected = $wasSelected;
+
+            if ($collection) {
+                return count($collection);
+            } else {
+                return null;
+            }
         });
     }
 
@@ -120,12 +150,16 @@ class Tabs extends Leaf
         return $tabs[$tabIndex];
     }
 
+    private $inflatedTabs;
+
     protected final function getInflatedTabDefinitions()
     {
-        $tabs = $this->inflateTabDefinitions();
-        $this->markSelectedTab($tabs);
+        if ($this->inflatedTabs === null) {
+            $this->inflatedTabs = $this->inflateTabDefinitions();
+            $this->markSelectedTab($tabs);
+        }
 
-        return $tabs;
+        return $this->inflatedTabs;
     }
 
     protected function inflateTabDefinitions()

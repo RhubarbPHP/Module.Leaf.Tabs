@@ -32,4 +32,21 @@ class TabDefinition
         $this->data = $tabData;
         $this->selected = false;
     }
+
+    public function getLabel($count = null)
+    {
+        $label = $this->label;
+
+        if ($count!==null){
+            $label .= " <span class='count'>(".$count.")</span>";
+        }
+
+        return $label;
+    }
+
+
+    protected function getCount()
+    {
+        return null;
+    }
 }

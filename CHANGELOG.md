@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.0.3
+
+Added:	    Support for adding counts to tabs if the data source supports it
+
 ### 1.0.2
 
 Fixed:	    Tabs didn't work with SearchTabs 
