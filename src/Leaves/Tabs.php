@@ -156,7 +156,7 @@ class Tabs extends Leaf
     {
         if ($this->inflatedTabs === null) {
             $this->inflatedTabs = $this->inflateTabDefinitions();
-            $this->markSelectedTab($tabs);
+            $this->markSelectedTab($this->inflatedTabs);
         }
 
         return $this->inflatedTabs;
