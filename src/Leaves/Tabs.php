@@ -210,7 +210,7 @@ class Tabs extends UrlStateLeaf
     }
 
     /**
-     * Set's the selected tab to the one indexed by $index
+     * Set the selected tab to the one indexed by $index
      *
      * Triggers the SelectedTabChanged event.
      *
@@ -228,10 +228,30 @@ class Tabs extends UrlStateLeaf
         $this->onSelectedTabChanged($tabIndex);
     }
 
+    /**
+     * Set the selected tab by label
+     * @param $name
+     */
+    public function selectTabByLabel($name)
+    {
+        $index = null;
+        foreach ($this->model->tabs as $tab) {
+            if ($tab->label == $name) {
+                $this->selectTabByIndex($index);
+                break;
+            }
+            $index++;
+        }
+    }
+
     protected function parseUrlState(WebRequest $request)
     {
         if (($tab = $request->get($this->model->leafPath)) !== null) {
-            $this->selectTabByIndex($tab);
+            if (is_numeric($tab)) {
+                $this->selectTabByIndex($tab);
+            } else {
+                $this->selectTabByLabel($tab);
+            }
         }
     }
 
