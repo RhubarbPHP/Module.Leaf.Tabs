@@ -246,7 +246,7 @@ class Tabs extends UrlStateLeaf
 
     protected function parseUrlState(WebRequest $request)
     {
-        if (($tab = $request->get($this->model->leafPath)) !== null) {
+        if (($tab = $request->get($this->model->urlStateName)) !== null) {
             if (is_numeric($tab)) {
                 $this->selectTabByIndex($tab);
             } else {
