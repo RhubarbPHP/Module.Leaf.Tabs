@@ -19,9 +19,10 @@
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
 use Rhubarb\Leaf\Leaves\LeafDeploymentPackage;
+use Rhubarb\Leaf\Leaves\UrlStateView;
 use Rhubarb\Leaf\Views\View;
 
-class TabsView extends View
+class TabsView extends UrlStateView
 {
     /**
      * @var TabsModel
@@ -35,7 +36,18 @@ class TabsView extends View
 
     public function getDeploymentPackage()
     {
-        return new LeafDeploymentPackage(__DIR__."/TabsViewBridge.js");
+        $package = parent::getDeploymentPackage();
+
+        $package->resourcesToDeploy[] = __DIR__."/TabsViewBridge.js";
+
+        return $package;
+    }
+
+    protected function beforeRender()
+    {
+        parent::beforeRender();
+
+        $this->model->urlStateName = $this->model->leafPath;
     }
 
     protected function printTab($tab)

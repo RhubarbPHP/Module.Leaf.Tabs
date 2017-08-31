@@ -3,9 +3,9 @@
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
 use Rhubarb\Crown\Events\Event;
-use Rhubarb\Leaf\Leaves\LeafModel;
+use Rhubarb\Leaf\Leaves\UrlStateLeafModel;
 
-class TabsModel extends LeafModel
+class TabsModel extends UrlStateLeafModel
 {
     /**
      * The name/index of the currently selected tab.

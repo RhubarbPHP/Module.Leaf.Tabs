@@ -19,10 +19,11 @@
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
 use Rhubarb\Crown\Events\Event;
-use Rhubarb\Leaf\Leaves\Leaf;
+use Rhubarb\Crown\Request\WebRequest;
 use Rhubarb\Leaf\Leaves\LeafModel;
+use Rhubarb\Leaf\Leaves\UrlStateLeaf;
 
-class Tabs extends Leaf
+class Tabs extends UrlStateLeaf
 {
     protected $tabs = [];
 
@@ -81,27 +82,47 @@ class Tabs extends Leaf
         $this->refreshesPageCollectionEvent = $this->selectedTabChangedEvent;
     }
 
+    /**
+     * Should return a class that derives from LeafModel
+     *
+     * @return LeafModel
+     */
+    protected function createModel()
+    {
+        return new TabsModel();
+    }
+
+    /**
+     * Returns the name of the standard view used for this leaf.
+     *
+     * @return string
+     */
+    protected function getViewClass()
+    {
+        return TabsView::class;
+    }
+
     protected function onModelCreated()
     {
         parent::onModelCreated();
 
-        $this->model->getCollectionEvent->attachHandler(function(){
+        $this->model->getCollectionEvent->attachHandler(function () {
             $this->gettingUnfilteredCollection = true;
             $collection = $this->getCollectionEvent->raise();
             $this->gettingUnfilteredCollection = false;
             return $collection;
         });
 
-        $this->model->getCountForTabEvent->attachHandler(function(TabDefinition $tab){
+        $this->model->getCountForTabEvent->attachHandler(function (TabDefinition $tab) {
 
-            if (!$this->includeCountIfSupported){
+            if (!$this->includeCountIfSupported) {
                 return null;
             }
 
             $oldSelected = $this->model->selectedTab;
             $wasSelected = $tab->selected;
 
-            $index = array_search($tab,$this->getInflatedTabDefinitions());
+            $index = array_search($tab, $this->getInflatedTabDefinitions());
             $this->selectedTabChangedEvent->raise($index);
             $collection = $this->getCollectionEvent->raise();
             $this->selectedTabChangedEvent->raise($oldSelected);
@@ -113,6 +134,10 @@ class Tabs extends Leaf
             } else {
                 return null;
             }
+        });
+
+        $this->model->tabSelectedEvent->attachHandler(function ($tabIndex) {
+            $this->selectTabByIndex($tabIndex);
         });
     }
 
@@ -193,11 +218,21 @@ class Tabs extends Leaf
      */
     public function selectTabByIndex($tabIndex)
     {
+        //Un-select the currently selected tab
+        $this->model->tabs[$this->model->selectedTab]->selected = false;
+
         $this->model->selectedTab = $tabIndex;
 
         $this->selectedTabChangedEvent->raise($tabIndex);
 
         $this->onSelectedTabChanged($tabIndex);
+    }
+
+    protected function parseUrlState(WebRequest $request)
+    {
+        if (($tab = $request->get($this->model->leafPath)) !== null) {
+            $this->selectTabByIndex($tab);
+        }
     }
 
     /**
@@ -206,30 +241,5 @@ class Tabs extends Leaf
     protected function onSelectedTabChanged($tabIndex)
     {
 
-    }
-
-    /**
-     * Returns the name of the standard view used for this leaf.
-     *
-     * @return string
-     */
-    protected function getViewClass()
-    {
-        return TabsView::class;
-    }
-
-    /**
-     * Should return a class that derives from LeafModel
-     *
-     * @return LeafModel
-     */
-    protected function createModel()
-    {
-        $model = new TabsModel();
-        $model->tabSelectedEvent->attachHandler(function ($tabIndex) {
-            $this->selectTabByIndex($tabIndex);
-        });
-
-        return $model;
     }
 }
