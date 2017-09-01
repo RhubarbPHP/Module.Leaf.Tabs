@@ -218,14 +218,18 @@ class Tabs extends UrlStateLeaf
      */
     public function selectTabByIndex($tabIndex)
     {
-        //Un-select the currently selected tab
-        $this->model->tabs[$this->model->selectedTab]->selected = false;
+        if (isset($this->model->tabs[$this->model->selectedTab])) {
+            //Un-select the currently selected tab
+            $this->model->tabs[$this->model->selectedTab]->selected = false;
+        }
 
-        $this->model->selectedTab = $tabIndex;
+        if ($tabIndex && isset($this->model->tabs[$tabIndex])) {
+            $this->model->selectedTab = $tabIndex;
 
-        $this->selectedTabChangedEvent->raise($tabIndex);
+            $this->selectedTabChangedEvent->raise($tabIndex);
 
-        $this->onSelectedTabChanged($tabIndex);
+            $this->onSelectedTabChanged($tabIndex);
+        }
     }
 
     /**
