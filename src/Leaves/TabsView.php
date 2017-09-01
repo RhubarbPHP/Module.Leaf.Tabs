@@ -43,13 +43,6 @@ class TabsView extends UrlStateView
         return $package;
     }
 
-    protected function beforeRender()
-    {
-        parent::beforeRender();
-
-        $this->model->urlStateName = $this->model->leafPath;
-    }
-
     protected function printTab($tab)
     {
         $selected = ($tab->selected) ? " class=\"-is-selected\"" : "";
