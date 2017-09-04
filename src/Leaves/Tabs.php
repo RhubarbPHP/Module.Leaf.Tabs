@@ -120,14 +120,11 @@ class Tabs extends UrlStateLeaf
             }
 
             $oldSelected = $this->model->selectedTab;
-            $wasSelected = $tab->selected;
 
             $index = array_search($tab, $this->getInflatedTabDefinitions());
             $this->selectedTabChangedEvent->raise($index);
             $collection = $this->getCollectionEvent->raise();
             $this->selectedTabChangedEvent->raise($oldSelected);
-
-            $tab->selected = $wasSelected;
 
             if ($collection) {
                 return count($collection);
@@ -223,7 +220,7 @@ class Tabs extends UrlStateLeaf
             $this->model->tabs[$this->model->selectedTab]->selected = false;
         }
 
-        if ($tabIndex && isset($this->model->tabs[$tabIndex])) {
+        if ($tabIndex !== null && isset($this->model->tabs[$tabIndex])) {
             $this->model->selectedTab = $tabIndex;
 
             $this->selectedTabChangedEvent->raise($tabIndex);
