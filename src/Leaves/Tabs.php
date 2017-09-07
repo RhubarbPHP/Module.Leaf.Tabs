@@ -18,6 +18,7 @@
 
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
+use Rhubarb\Crown\Application;
 use Rhubarb\Crown\Events\Event;
 use Rhubarb\Crown\Request\WebRequest;
 use Rhubarb\Leaf\Leaves\LeafModel;
@@ -122,9 +123,10 @@ class Tabs extends UrlStateLeaf
             $oldSelected = $this->model->selectedTab;
 
             $index = array_search($tab, $this->getInflatedTabDefinitions());
-            $this->selectedTabChangedEvent->raise($index);
+
+            $this->selectedTabChangedEvent->raise($index, true);
             $collection = $this->getCollectionEvent->raise();
-            $this->selectedTabChangedEvent->raise($oldSelected);
+            $this->selectedTabChangedEvent->raise($oldSelected, false);
 
             if ($collection) {
                 return count($collection);
@@ -176,10 +178,10 @@ class Tabs extends UrlStateLeaf
 
     protected final function getInflatedTabDefinitions()
     {
-        if ($this->inflatedTabs === null) {
+        //if ($this->inflatedTabs === null) {
             $this->inflatedTabs = $this->inflateTabDefinitions();
             $this->markSelectedTab($this->inflatedTabs);
-        }
+        //}
 
         return $this->inflatedTabs;
     }
@@ -247,6 +249,10 @@ class Tabs extends UrlStateLeaf
 
     protected function parseUrlState(WebRequest $request)
     {
+        if (Application::current()->context()->isXhrRequest()){
+            return;
+        }
+
         if (($tab = $request->get($this->model->urlStateName)) !== null) {
             if (is_numeric($tab)) {
                 $this->selectTabByIndex($tab);
