@@ -53,7 +53,9 @@ class TabsView extends UrlStateView
     {
         print "<ul class='tabs'>";
 
-        foreach ($this->model->tabs as $tab) {
+        $tabs = $this->model->tabs;
+
+        foreach ($tabs as $tab) {
             $this->printTab($tab);
         }
 

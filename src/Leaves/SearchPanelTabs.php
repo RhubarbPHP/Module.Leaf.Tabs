@@ -71,7 +71,7 @@ class SearchPanelTabs extends Tabs
 
         foreach ($this->tabs as $key => $value) {
             if ($value instanceof TabDefinition) {
-                $inflatedTabDefinitions[] = $value;
+                $inflatedTabDefinitions[] = clone $value;
             } elseif (is_string($key)) {
                 if (is_array($value)) {
                     $inflatedTabDefinitions[] = new SearchPanelTabDefinition($key, $value);
