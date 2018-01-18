@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.0.4
+
+Added:      FilterTabs to update table directly when there is no SearchPanel option for the desired filters. 
+
 ### 1.0.3
 
 Added:	    Support for adding counts to tabs if the data source supports it
