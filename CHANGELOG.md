@@ -1,8 +1,12 @@
 # Changelog
 
-### 1.0.4
+### 1.0.5
 
 Added:      FilterTabs to update table directly when there is no SearchPanel option for the desired filters. 
+
+### 1.0.4
+
+Fixed:      Bug selecting non-inflated tabs
 
 ### 1.0.3
 
