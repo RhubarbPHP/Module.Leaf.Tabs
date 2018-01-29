@@ -2,6 +2,7 @@
 
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
+use Rhubarb\Crown\Events\Event;
 use Rhubarb\Leaf\Leaves\Leaf;
 
 class FilterTabs extends Tabs
@@ -18,7 +19,7 @@ class FilterTabs extends Tabs
 
     protected function bindEvents(Leaf $presenter)
     {
-        if (property_exists($presenter, "getFilterEvent")) {
+        if (isset($presenter->getFilterEvent) && $presenter->getFilterEvent instanceof Event) {
             $presenter->getFilterEvent->attachHandler(
                 function () {
                     return $this->populateFilter();
