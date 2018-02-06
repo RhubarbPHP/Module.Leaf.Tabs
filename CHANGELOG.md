@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.1.0
+
+Fixed:	    FilterTabs now interacts with search panel to show "Search Results". Bigger version bump to reflect addition of FilterTabs
+
 ### 1.0.5
 
 Added:      FilterTabs to update table directly when there is no SearchPanel option for the desired filters. 

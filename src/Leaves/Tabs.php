@@ -119,11 +119,11 @@ class Tabs extends Leaf
     public function setTabDefinitions($tabs = [])
     {
         $this->tabs = $tabs;
-        $this->model->tabs = $this->getInflatedTabDefinitions();
     }
 
     protected function beforeRender()
     {
+        $this->model->tabs = $this->getInflatedTabDefinitions();
         $this->markSelectedTab($this->model->tabs);
 
         parent::beforeRender();
@@ -179,7 +179,7 @@ class Tabs extends Leaf
 
     protected function markSelectedTab(&$inflatedTabDefinitions)
     {
-        if ($this->model->selectedTab !== null) {
+        if ($this->model->selectedTab !== null && (count($inflatedTabDefinitions) > $this->model->selectedTab)) {
             $inflatedTabDefinitions[$this->model->selectedTab]->selected = true;
         }
     }

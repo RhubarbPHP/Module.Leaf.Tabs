@@ -40,7 +40,7 @@ class TabsView extends View
 
     protected function printTab($tab)
     {
-        $selected = ($tab->selected) ? " class=\"-is-selected\"" : "";
+        $selected = ($tab->selected) ? " class=\"selected\"" : "";
         print "<li{$selected}><a href='#'>" . $tab->getLabel($this->model->getCountForTabEvent->raise($tab)) . "</a></li>";
     }
 
