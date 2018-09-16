@@ -120,3 +120,41 @@ to respond to the change of tab.
 
 In addition a sub class can customise the HTML for the tab itself by overriding the `getLabel($count)`
 function.
+
+## FilterTabs
+
+`FilterTabs` provides a simple way to filter other components that raise the `getFilterEvent`.
+Components raising `getFilterEvent` do so just before rendering and expect a stem Filter object
+to be returned (this can be an AndGroup or an OrGroup of course).
+
+The filters are defined explicitly when setting up the tabs using `FilterTabDefinition`
+objects instead of `TabDefinition`.
+
+This allows our example above to be written much more succinctly:
+
+```php
+class MyPageView extends View
+{
+    protected function createSubLeaves()
+    {
+        $this->registerSubLeaf(
+            $tabs = new FilterTabs(),
+            
+            // Set up a table with an unfiltered collection - on render the filter for the
+            // first tab will be applied.
+            $table = new Table(Jobs::all())
+            );
+            
+        $tabs->setTabDefinitions([
+            new FilterTabDefinition('Incoming', new Equals('Status', 'Incoming'),        
+            new FilterTabDefinition('Outgoing', new Equals('Status', 'Outgoing'),        
+            new FilterTabDefinition('Stale', new Equals('Status', 'Stale')        
+        ]);
+        
+        $tabs->bindEventsWith($table);
+    }
+}
+```
+
+> Notice the call to `bindEventsWith` to ensure that both components discover their 
+> support for each other's events.
