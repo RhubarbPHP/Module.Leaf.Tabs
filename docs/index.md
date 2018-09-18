@@ -185,23 +185,30 @@ class MyPageView extends View
     {
         $this->registerSubLeaf(
             $this->search = new JobSearchPanel(),
-            $this->tabs = new SearchPanelTabs(),
-            
+            $this->tabs = new SearchPanelTabs("Search"),
+
             // Set up a table with an unfiltered collection - on render the filter for the
             // first tab will be applied.
-            $this->table = new Table(Jobs::all())
-            );
-            
+            $this->table = new Table(Job::all())
+        );
+
         $this->tabs->setTabDefinitions([
-            new SearchPanelTabDefinition('Incoming', ['Status' => 'Incoming']),        
-            new SearchPanelTabDefinition('Outgoing', ['Status' => 'Outgoing']),        
-            new SearchPanelTabDefinition('Stale', ['Status' => 'Stale']),   
+            new SearchPanelTabDefinition('Unsent', []),
+            new SearchPanelTabDefinition('Incoming', ['Status' => 'Incoming']),
+            new SearchPanelTabDefinition('Outgoing', ['Status' => 'Outgoing']),
             new SearchPanelTabDefinition('Sent', [
                 'Status' => 'Outgoing',
                 'Sent' => true
-                ]),   
+            ]),
         ]);
-        
+
+        $this->table->columns = [
+            "JobID",
+            "JobTitle",
+            "Status",
+            "Sent"
+        ];
+
         $this->search->bindEventsWith($this->table);
         $this->search->bindEventsWith($this->tabs);
         $this->tabs->bindEventsWith($this->table);
