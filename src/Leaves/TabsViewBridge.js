@@ -10,7 +10,7 @@ tabsPresenter.prototype.attachEvents = function () {
     var self = this;
 
     for(var i = 0; i<nodes.length; i++){
-        nodes[i].addEventListener('click',function () {
+        nodes[i].addEventListener('click',function (event) {
             var lis = this.parentNode.childNodes;
             var index = Array.prototype.indexOf.call(lis, this);
 
@@ -23,6 +23,9 @@ tabsPresenter.prototype.attachEvents = function () {
             }
 
             this.classList.add('selected');
+
+            event.preventDefault();
+            return false;
         });
     }
 };

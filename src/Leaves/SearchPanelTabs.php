@@ -57,6 +57,8 @@ class SearchPanelTabs extends Tabs
     {
         parent::onSelectedTabChanged($tabIndex);
 
+        $this->inflatedTabs = null;
+
         // If the tab that's been selected has control values attached, throw an event to say so.
         $tab = $this->getTabByIndex($tabIndex);
 
@@ -81,17 +83,14 @@ class SearchPanelTabs extends Tabs
             }
         }
 
-        return $inflatedTabDefinitions;
-    }
-
-    protected function markSelectedTab(&$inflatedTabDefinitions)
-    {
         $currentSearchValues = $this->getSearchControlValuesEvent->raise();
 
         $anySelected = false;
 
         if ($currentSearchValues !== null) {
+            $x = -1;
             foreach ($inflatedTabDefinitions as $tab) {
+                $x++;
                 $same = true;
 
                 foreach ($tab->data as $key => $value) {
@@ -124,9 +123,7 @@ class SearchPanelTabs extends Tabs
 
                 if ($same) {
                     $anySelected = true;
-                    $tab->selected = true;
-                } else {
-                    $tab->selected = false;
+                    $this->model->selectedTab = $x;;
                 }
             }
         } else {
@@ -135,9 +132,11 @@ class SearchPanelTabs extends Tabs
 
         if (!$anySelected) {
             $inflatedTabDefinitions[] = $searchResults = new SearchResultsTabDefinition("Search Results");
+            $this->model->selectedTab = sizeof($inflatedTabDefinitions) - 1;
             $searchResults->data = $currentSearchValues;
-            $searchResults->selected = true;
         }
+
+        return $inflatedTabDefinitions;
     }
 
     protected function bindEvents(Leaf $presenter)

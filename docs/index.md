@@ -158,3 +158,63 @@ class MyPageView extends View
 
 > Notice the call to `bindEventsWith` to ensure that both components discover their 
 > support for each other's events.
+
+## SearchPanelTabs
+
+`SearchPanelTabs` extends `FilterTabs` to allow the tab control to interoperate with
+a [SearchPanel](/manual/module.leaf.searchpanel/index).
+
+`SearchPanelTabs` is used in conjunction with `SearchResultsTabDefinition` classes. These 
+contain an array of key value pairs mapping the name of control in the `SearchPanel` to
+a set value.
+
+When the tab is selected the `SearchPanel` is updated to have those control values set.
+In turn the `SearchPanel` then raises it's own event to say that the search values have
+changed which can cause other connected controls to update, e.g. a `Table`.
+
+The pattern provides a set of tabs that are essentially 'defaults' which configure a
+`SearchPanel` but the user can continue to search for whatever they want.
+
+If the search values don't match any tab the tab control will in return create a new
+temporary tab called "Search Results".
+
+```php
+class MyPageView extends View
+{
+    protected function createSubLeaves()
+    {
+        $this->registerSubLeaf(
+            $this->search = new JobSearchPanel(),
+            $this->tabs = new SearchPanelTabs(),
+            
+            // Set up a table with an unfiltered collection - on render the filter for the
+            // first tab will be applied.
+            $this->table = new Table(Jobs::all())
+            );
+            
+        $this->tabs->setTabDefinitions([
+            new SearchPanelTabDefinition('Incoming', ['Status' => 'Incoming']),        
+            new SearchPanelTabDefinition('Outgoing', ['Status' => 'Outgoing']),        
+            new SearchPanelTabDefinition('Stale', ['Status' => 'Stale']),   
+            new SearchPanelTabDefinition('Sent', [
+                'Status' => 'Outgoing',
+                'Sent' => true
+                ]),   
+        ]);
+        
+        $this->search->bindEventsWith($this->table);
+        $this->search->bindEventsWith($this->tabs);
+        $this->tabs->bindEventsWith($this->table);
+    }
+    
+    protected function printViewContent()
+    {
+        print $this->search;
+        print $this->tabs;
+        print $this->table;
+    }
+}
+```
+
+``` demo[examples/SearchPanelTabsExample/SearchPanelTabsExample.php]
+```

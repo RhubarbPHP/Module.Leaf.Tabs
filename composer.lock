@@ -4,21 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "83543ac6c92f411b9ec180c20170bdb8",
     "content-hash": "651533f25884c25949f7b6469ee88e20",
     "packages": [
         {
-            "name": "phpdocumentor/reflection-docblock",
-            "version": "2.0.4",
+            "name": "firebase/php-jwt",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8"
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d68dbdc53dc358a816f00b300704702b2eaff7b8",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+                "reference": "dccf163dc8ed7ed6a00afc06c51ee5186a428d35",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2016-07-18T04:51:16+00:00"
+        },
+        {
+            "name": "phpdocumentor/reflection-docblock",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
+                "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
                 "shasum": ""
             },
             "require": {
@@ -54,24 +96,24 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
-            "time": "2015-02-03 12:10:50"
+            "time": "2016-01-25T08:17:30+00:00"
         },
         {
             "name": "rhubarbphp/custard",
-            "version": "1.0.9",
+            "version": "1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RhubarbPHP/Custard.git",
-                "reference": "9bbb26787291013724db4e3b261624efe795a599"
+                "reference": "6dc357a82cda13d9ef9bb3e9aa2ed823bbcc3ee6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Custard/zipball/9bbb26787291013724db4e3b261624efe795a599",
-                "reference": "9bbb26787291013724db4e3b261624efe795a599",
+                "url": "https://api.github.com/repos/RhubarbPHP/Custard/zipball/6dc357a82cda13d9ef9bb3e9aa2ed823bbcc3ee6",
+                "reference": "6dc357a82cda13d9ef9bb3e9aa2ed823bbcc3ee6",
                 "shasum": ""
             },
             "require": {
-                "phpdocumentor/reflection-docblock": "2.0.4",
+                "phpdocumentor/reflection-docblock": "^2.0.4",
                 "symfony/console": ">=2.7.5"
             },
             "bin": [
@@ -100,20 +142,65 @@
                 "rhubarb",
                 "tools"
             ],
-            "time": "2016-08-04 21:46:40"
+            "time": "2017-01-09T16:06:24+00:00"
         },
         {
-            "name": "rhubarbphp/module-jsvalidation",
-            "version": "1.1.0",
+            "name": "rhubarbphp/module-csrfprotection",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RhubarbPHP/Module.JsValidation.git",
-                "reference": "7200527cebec191dc2e968ce40a320a55bebd5b2"
+                "url": "https://github.com/RhubarbPHP/Module.CsrfProtection.git",
+                "reference": "3472b0cce4137b33e205183c19530b07f5a17a0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Module.JsValidation/zipball/7200527cebec191dc2e968ce40a320a55bebd5b2",
-                "reference": "7200527cebec191dc2e968ce40a320a55bebd5b2",
+                "url": "https://api.github.com/repos/RhubarbPHP/Module.CsrfProtection/zipball/3472b0cce4137b33e205183c19530b07f5a17a0d",
+                "reference": "3472b0cce4137b33e205183c19530b07f5a17a0d",
+                "shasum": ""
+            },
+            "require": {
+                "rhubarbphp/rhubarb": "^1.5.6"
+            },
+            "require-dev": {
+                "codeception/codeception": "^2.0.0",
+                "codeception/specify": "^0.4.6",
+                "codeception/verify": "^0.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rhubarb\\Csrf\\": "src/",
+                    "Rhubarb\\Csrf\\Tests\\": "tests/unit/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A means to provide token based CSRF protection",
+            "homepage": "http://www.rhubarbphp.com/",
+            "keywords": [
+                "csrf",
+                "framework",
+                "php",
+                "protection",
+                "rhubarb",
+                "token"
+            ],
+            "time": "2018-01-15T21:02:22+00:00"
+        },
+        {
+            "name": "rhubarbphp/module-jsvalidation",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RhubarbPHP/Module.JsValidation.git",
+                "reference": "5f873919968066a44da83bcdea562599a6d025ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RhubarbPHP/Module.JsValidation/zipball/5f873919968066a44da83bcdea562599a6d025ef",
+                "reference": "5f873919968066a44da83bcdea562599a6d025ef",
                 "shasum": ""
             },
             "type": "library",
@@ -122,24 +209,25 @@
                 "Apache 2.0"
             ],
             "description": "Provides javascript validation patterns for HTML forms",
-            "time": "2016-08-04 22:02:43"
+            "time": "2017-08-17T14:34:15+00:00"
         },
         {
             "name": "rhubarbphp/module-leaf",
-            "version": "1.1.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RhubarbPHP/Module.Leaf.git",
-                "reference": "d1d2bc12d5ef59503fed46b78da1161fdf8fe651"
+                "reference": "780a4604456e29dad25934cdc559ce4dd3bd52f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf/zipball/d1d2bc12d5ef59503fed46b78da1161fdf8fe651",
-                "reference": "d1d2bc12d5ef59503fed46b78da1161fdf8fe651",
+                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf/zipball/780a4604456e29dad25934cdc559ce4dd3bd52f4",
+                "reference": "780a4604456e29dad25934cdc559ce4dd3bd52f4",
                 "shasum": ""
             },
             "require": {
                 "rhubarbphp/custard": "^1.0.9",
+                "rhubarbphp/module-csrfprotection": "^1.0.5",
                 "rhubarbphp/module-jsvalidation": "^1.0.0",
                 "rhubarbphp/rhubarb": "^1.1.0"
             },
@@ -155,11 +243,6 @@
                 "theseer/phpdox": "*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Rhubarb\\Leaf\\": "src/",
@@ -180,23 +263,24 @@
                 "presenter",
                 "rhubarb"
             ],
-            "time": "2016-08-04 22:06:48"
+            "time": "2018-09-14T10:16:39+00:00"
         },
         {
             "name": "rhubarbphp/rhubarb",
-            "version": "1.1.4",
+            "version": "1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RhubarbPHP/Rhubarb.git",
-                "reference": "985acaa92917fa9374e0f01c05c7d7df5e94992e"
+                "reference": "5d8d65202902fb7f1dc05cc51dc6f8e272e7bb4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Rhubarb/zipball/985acaa92917fa9374e0f01c05c7d7df5e94992e",
-                "reference": "985acaa92917fa9374e0f01c05c7d7df5e94992e",
+                "url": "https://api.github.com/repos/RhubarbPHP/Rhubarb/zipball/5d8d65202902fb7f1dc05cc51dc6f8e272e7bb4d",
+                "reference": "5d8d65202902fb7f1dc05cc51dc6f8e272e7bb4d",
                 "shasum": ""
             },
             "require": {
+                "firebase/php-jwt": "^4.0",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -227,40 +311,48 @@
                 "framework",
                 "php"
             ],
-            "time": "2016-08-04 21:55:43"
+            "time": "2018-09-14T13:20:36+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f9e638e8149e9e41b570ff092f8007c477ef0ce5"
+                "reference": "ca80b8ced97cf07390078b29773dc384c39eee1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f9e638e8149e9e41b570ff092f8007c477ef0ce5",
-                "reference": "f9e638e8149e9e41b570ff092f8007c477ef0ce5",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ca80b8ced97cf07390078b29773dc384c39eee1f",
+                "reference": "ca80b8ced97cf07390078b29773dc384c39eee1f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
+                "php": "^7.1.3",
                 "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/dependency-injection": "<3.4",
+                "symfony/process": "<3.3"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.8|~3.0",
-                "symfony/process": "~2.8|~3.0"
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/event-dispatcher": "~3.4|~4.0",
+                "symfony/lock": "~3.4|~4.0",
+                "symfony/process": "~3.4|~4.0"
             },
             "suggest": {
-                "psr/log": "For using the console logger",
+                "psr/log-implementation": "For using the console logger",
                 "symfony/event-dispatcher": "",
+                "symfony/lock": "",
                 "symfony/process": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -287,20 +379,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-26 08:04:17"
+            "time": "2018-07-26T11:24:31+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.2.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594"
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
                 "shasum": ""
             },
             "require": {
@@ -312,7 +404,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -346,7 +438,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-05-18 14:26:46"
+            "time": "2018-08-06T14:22:27+00:00"
         }
     ],
     "packages-dev": [],

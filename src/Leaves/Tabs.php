@@ -150,7 +150,7 @@ class Tabs extends Leaf
         return $tabs[$tabIndex];
     }
 
-    private $inflatedTabs;
+    protected $inflatedTabs;
 
     protected final function getInflatedTabDefinitions()
     {
@@ -179,8 +179,15 @@ class Tabs extends Leaf
 
     protected function markSelectedTab(&$inflatedTabDefinitions)
     {
-        if ($this->model->selectedTab !== null && (count($inflatedTabDefinitions) > $this->model->selectedTab)) {
-            $inflatedTabDefinitions[$this->model->selectedTab]->selected = true;
+        $x = -1;
+        foreach ($inflatedTabDefinitions as $tab) {
+            $x++;
+
+            if ($this->model->selectedTab === $x) {
+                $tab->selected = true;
+            } else {
+                $tab->selected = false;
+            }
         }
     }
 

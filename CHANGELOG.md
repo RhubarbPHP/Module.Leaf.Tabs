@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.1.1
+
+Changed:    Much less fragile selected tab behaviour in SearchPanelTabs
+Added:      Docs and an example
+
 ### 1.1.0
 
 Fixed:	    FilterTabs now interacts with search panel to show "Search Results". Bigger version bump to reflect addition of FilterTabs
