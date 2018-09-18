@@ -23,9 +23,9 @@ class SearchPanelTabsExampleView extends View
         );
 
         $this->tabs->setTabDefinitions([
+            new SearchPanelTabDefinition('Unsent', []),
             new SearchPanelTabDefinition('Incoming', ['Status' => 'Incoming']),
             new SearchPanelTabDefinition('Outgoing', ['Status' => 'Outgoing']),
-            new SearchPanelTabDefinition('Stale', ['Status' => 'Stale']),
             new SearchPanelTabDefinition('Sent', [
                 'Status' => 'Outgoing',
                 'Sent' => true
