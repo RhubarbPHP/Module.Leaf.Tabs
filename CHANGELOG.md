@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.1.2
+
+Fixed:      Search panel now recognises complex value types.
+
 ### 1.1.1
 
 Changed:    Much less fragile selected tab behaviour in SearchPanelTabs
