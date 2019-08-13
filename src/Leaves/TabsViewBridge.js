@@ -1,8 +1,8 @@
 var tabsPresenter = function (leafPath) {
-    window.rhubarb.viewBridgeClasses.ViewBridge.apply(this, arguments);
+    window.rhubarb.viewBridgeClasses.UrlStateViewBridge.apply(this, arguments);
 };
 
-tabsPresenter.prototype = new window.rhubarb.viewBridgeClasses.ViewBridge();
+tabsPresenter.prototype = new window.rhubarb.viewBridgeClasses.UrlStateViewBridge();
 tabsPresenter.prototype.constructor = tabsPresenter;
 
 tabsPresenter.prototype.attachEvents = function () {

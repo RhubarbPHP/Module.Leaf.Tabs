@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.1.2
+
+Changed:    Support for url state
+
 ### 1.1.1
 
 Changed:    Much less fragile selected tab behaviour in SearchPanelTabs

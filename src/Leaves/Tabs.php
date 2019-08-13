@@ -21,8 +21,9 @@ namespace Rhubarb\Leaf\Tabs\Leaves;
 use Rhubarb\Crown\Events\Event;
 use Rhubarb\Leaf\Leaves\Leaf;
 use Rhubarb\Leaf\Leaves\LeafModel;
+use Rhubarb\Leaf\Leaves\UrlStateLeaf;
 
-class Tabs extends Leaf
+class Tabs extends UrlStateLeaf
 {
     protected $tabs = [];
 
@@ -182,6 +183,10 @@ class Tabs extends Leaf
         $x = -1;
         foreach ($inflatedTabDefinitions as $tab) {
             $x++;
+
+            if ($this->model->selectedTab === $tab->label){
+                $this->model->selectedTab = $x;
+            }
 
             if ($this->model->selectedTab === $x) {
                 $tab->selected = true;
