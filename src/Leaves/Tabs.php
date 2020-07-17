@@ -19,9 +19,10 @@
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
 use Rhubarb\Crown\Events\Event;
-use Rhubarb\Leaf\Leaves\Leaf;
 use Rhubarb\Leaf\Leaves\LeafModel;
 use Rhubarb\Leaf\Leaves\UrlStateLeaf;
+use Rhubarb\Stem\Aggregates\CountDistinct;
+use Rhubarb\Stem\Collections\Collection;
 
 class Tabs extends UrlStateLeaf
 {
@@ -110,6 +111,13 @@ class Tabs extends UrlStateLeaf
             $tab->selected = $wasSelected;
 
             if ($collection) {
+                if ($collection instanceof Collection) {
+                    //While counting the collection requires loading the entire collection, the aggregate allows
+                    //us to get around that
+                    list($count) = $collection->calculateAggregates(new CountDistinct($collection->getModelSchema()->uniqueIdentifierColumnName));
+                    return $count ?? 0;
+                }
+
                 return count($collection);
             } else {
                 return null;
