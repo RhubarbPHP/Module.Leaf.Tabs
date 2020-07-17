@@ -18,10 +18,12 @@
 
 namespace Rhubarb\Leaf\Tabs\Leaves;
 
+use Rhubarb\Crown\Request\WebRequest;
 use Rhubarb\Leaf\Leaves\LeafDeploymentPackage;
+use Rhubarb\Leaf\Leaves\UrlStateView;
 use Rhubarb\Leaf\Views\View;
 
-class TabsView extends View
+class TabsView extends UrlStateView
 {
     /**
      * @var TabsModel
@@ -35,7 +37,10 @@ class TabsView extends View
 
     public function getDeploymentPackage()
     {
-        return new LeafDeploymentPackage(__DIR__."/TabsViewBridge.js");
+        $package = parent::getDeploymentPackage();
+        $package->resourcesToDeploy[] = __DIR__."/TabsViewBridge.js";
+
+        return $package;
     }
 
     protected function printTab($tab)
@@ -53,5 +58,12 @@ class TabsView extends View
         }
 
         print "</ul>";
+    }
+
+    public function parseUrlState(WebRequest $request)
+    {
+        if ($tab = $request->get($this->model->urlStateName)){
+            $this->model->tabSelectedEvent->raise($tab);
+        }
     }
 }

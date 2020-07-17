@@ -1,8 +1,17 @@
 # Changelog
 
-### 1.1.2
+### 1.2.1
 
 Fixed:      Search panel now recognises complex value types.
+
+### 1.2.0
+
+Added:      Added in stem as a dependency
+Changed:    If a tab's collection is a stem collection, use an aggregate to calculate the count for the tab
+
+### 1.1.2
+
+Changed:    Support for url state
 
 ### 1.1.1
 
