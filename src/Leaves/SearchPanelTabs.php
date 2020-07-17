@@ -99,9 +99,16 @@ class SearchPanelTabs extends Tabs
                         break;
                     }
 
-                    if ($currentSearchValues[$key] !== $value) {
-                        $same = false;
-                        break;
+                    if (is_object($value) ||is_array($value)){
+                        if (json_encode($currentSearchValues[$key]) != json_encode($value)){
+                            $same = false;
+                            break;
+                        }
+                    } else {
+                        if ($currentSearchValues[$key] !== $value) {
+                            $same = false;
+                            break;
+                        }
                     }
                 }
 
@@ -115,9 +122,16 @@ class SearchPanelTabs extends Tabs
                         continue;
                     }
 
-                    if ($tab->data[$key] !== $value) {
-                        $same = false;
-                        break;
+                    if (is_object($value) ||is_array($value)) {
+                        if (json_encode($tab->data[$key]) != json_encode($value)) {
+                            $same = false;
+                            break;
+                        }
+                    } else {
+                        if ($tab->data[$key] !== $value) {
+                            $same = false;
+                            break;
+                        }
                     }
                 }
 

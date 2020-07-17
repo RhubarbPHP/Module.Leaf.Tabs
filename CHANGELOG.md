@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.1
+
+Fixed:      Search panel now recognises complex value types.
+
 ### 1.2.0
 
 Added:      Added in stem as a dependency

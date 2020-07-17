@@ -17,6 +17,7 @@ tabsPresenter.prototype.attachEvents = function () {
             self.model.selectedTab = index;
             self.saveState();
             self.raiseServerEvent("tabSelected", index);
+            self.raiseClientEvent("OnTabSelected", index);
 
             for(var j = 0; j<nodes.length; j++){
                 nodes[j].classList.remove('selected');
