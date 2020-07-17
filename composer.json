@@ -17,6 +17,7 @@
     }
   },
   "require": {
-    "rhubarbphp/module-leaf": "^1.1.0"
+    "rhubarbphp/module-leaf": "^1.1.0",
+    "rhubarbphp/module-stem": "*"
   }
 }
